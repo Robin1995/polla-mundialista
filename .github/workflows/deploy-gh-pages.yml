@@ -8,6 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Check for docs directory
+        run: |
+          if [ ! -d ./docs ]; then
+            echo "No docs/ directory found — skipping deployment."
+            exit 0
+          fi
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
